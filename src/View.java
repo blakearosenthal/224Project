@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class View extends JFrame {
     private Controller controller;
+    protected OverworldPanel overworldPanel;
     protected JButton fightButton;
     protected JButton shieldButton;
     protected JButton healButton;
@@ -23,8 +24,10 @@ public class View extends JFrame {
 
     private void setupUI() {
 //        getContentPane().add(new MenuPanel(), BorderLayout.CENTER);
-        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
-        setupBattleUI();
+//        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
+//        setupBattleUI();
+        overworldPanel = new OverworldPanel();
+        getContentPane().add(overworldPanel, BorderLayout.CENTER);
     }
 
     private void setupBattleUI() {
