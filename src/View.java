@@ -6,7 +6,7 @@ public class View extends JFrame {
     private Controller controller;
     protected OverworldPanel overworldPanel;
     protected JButton fightButton;
-    protected JButton shieldButton;
+    protected JButton buffButton;
     protected JButton healButton;
     protected JButton runButton;
 
@@ -17,6 +17,7 @@ public class View extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(800, 700));
+        setResizable(false);
         setupUI();
         pack();
         setLocationRelativeTo(null);
@@ -24,10 +25,10 @@ public class View extends JFrame {
 
     private void setupUI() {
 //        getContentPane().add(new MenuPanel(), BorderLayout.CENTER);
-//        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
-//        setupBattleUI();
-        overworldPanel = new OverworldPanel();
-        getContentPane().add(overworldPanel, BorderLayout.CENTER);
+        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
+        setupBattleUI();
+//        overworldPanel = new OverworldPanel();
+//        getContentPane().add(overworldPanel, BorderLayout.CENTER);
     }
 
     private void setupBattleUI() {
@@ -54,9 +55,9 @@ public class View extends JFrame {
         fightButton.setBackground(Color.WHITE);
         battleOptionsPanel.add(fightButton);
 
-        shieldButton = new JButton("SHIELD");
-        shieldButton.setBackground(Color.WHITE);
-        battleOptionsPanel.add(shieldButton);
+        buffButton = new JButton("BUFF");
+        buffButton.setBackground(Color.WHITE);
+        battleOptionsPanel.add(buffButton);
 
         healButton = new JButton("HEAL");
         healButton.setBackground(Color.WHITE);
