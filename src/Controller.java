@@ -9,6 +9,7 @@ public class Controller {
         this.model = model;
         this.view = new View(this);
         view.overworldPanel.playerList = model.getPlayerList();
+        this.model.setupCharacters(model.getPlayerList().get(0).health);
         this.model.deletePlayerList();
 
         view.addWindowListener(new WindowAdapter() {

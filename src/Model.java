@@ -8,8 +8,11 @@ public class Model {
 
     public Model() {
         helper = new DatabaseHelper();
-        player = new Character(2, 2, 500, 500);
         enemy = new Character(2, 2, 200, 200);
+    }
+
+    public void setupCharacters(int playerHealth) {
+        player = new Character(2, 2, 500, 500, playerHealth);
     }
 
     public boolean isEnemyHit(int playerX, int playerY, int enemyX, int enemyY) {
