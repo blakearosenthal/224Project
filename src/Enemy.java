@@ -8,14 +8,14 @@ public class Enemy {
         this.health = health;
         this.x = x;
         this.y = y;
-        moveWeight = 1;
+        moveWeight = 1.2;
     }
 
     public Enemy() {
         health = 25;
         x = 0;
         y = 0;
-        moveWeight = 1;
+        moveWeight = 1.2;
     }
 
     public int getHealth() {
@@ -44,9 +44,9 @@ public class Enemy {
 
     public void randomMove(int width, int height) {
         if(x < 125 || y < 125)
-            moveWeight = 0.5;
+            moveWeight = 0.4;
         if(x > width - 175 || y > height - 175)
-            moveWeight = 1.5;
+            moveWeight = 1.7;
         int direction = (int)(Math.pow(Math.random(),moveWeight) * 4);
         switch(direction) {
             case 0:
