@@ -4,12 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 
-public class OverworldPanel extends JPanel {
+public class OverworldPanel extends JPanel implements presetColors {
     static final int DELAY = 10;
-    static final Color navy = Color.decode("#232931");
-    static final Color gray = Color.decode("#393e46");
-    static final Color green = Color.decode("#4ecca3");
-    static final Color white = Color.decode("#eeeeee");
     protected int playerX = 200;
     protected int playerY = 200;
     protected int width;

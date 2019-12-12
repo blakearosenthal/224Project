@@ -5,8 +5,8 @@ public class Model {
     Character enemy;
 
     public Model() {
-        player = new Character(5, 2, 2);
-        enemy = new Character(3, 1, 1);
+        player = new Character(2, 2);
+        enemy = new Character(1, 1);
     }
 
     public void attack() {
@@ -30,11 +30,9 @@ public class Model {
         enemyAction();
     }
 
-    public void run() {
-        System.out.println("=PLAYER=");
-        System.out.println("run: " + player.run());
-        System.out.println("=ENEMY=");
+    public boolean run() {
         enemyAction();
+        return new Random().nextInt(2) > 0;
     }
 
     private void enemyAction() {
