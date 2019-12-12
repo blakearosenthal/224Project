@@ -131,7 +131,7 @@ public class GamePanel extends JPanel implements PresetColors {
         int x = 500;
         int y = 50;
 
-        g2.setColor(Color.decode("#A6113A"));
+        g2.setColor(red);
         g2.fill(new Ellipse2D.Double(x, y, width, height));
         g2.setColor(Color.BLACK);
         g2.draw(new Ellipse2D.Double(x, y, width, height)); // head

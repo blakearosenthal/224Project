@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,9 @@ public class OverworldPanel extends JPanel implements PresetColors {
         g2.draw(new Rectangle2D.Double(0, 0, width, height));
 
         g2.setColor(green);
-        g2.fill(new Rectangle2D.Double(player.x, player.y, 50, 100));
+        g2.fill(new Ellipse2D.Double(player.x, player.y, 50, 50));
+
+        g2.setColor(red);
+        g2.fill(new Ellipse2D.Double(200, 200, 50, 50));
     }
 }
