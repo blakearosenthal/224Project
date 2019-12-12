@@ -3,16 +3,21 @@ import java.util.Random;
 
 public class Model {
     DatabaseHelper helper;
+    List<Character> charList;
     Character player;
     Character enemy;
 
     public Model() {
         helper = new DatabaseHelper();
+        charList = helper.getAllPlayersList();
         enemy = new Character(2, 2, 200, 200);
-    }
-
-    public void setupCharacters(int playerHealth) {
-        player = new Character(2, 2, 500, 500, playerHealth);
+        if (charList.size() == 0) {
+            player = new Character(2, 2, 500, 500);
+            System.out.println("new character created");
+        } else {
+            player = charList.get(0);
+            System.out.println("previous save loaded");
+        }
     }
 
     public boolean isEnemyHit(int playerX, int playerY, int enemyX, int enemyY) {
@@ -25,7 +30,7 @@ public class Model {
     }
 
     public List<Character> getPlayerList() {
-        return helper.getAllPlayersList();
+        return charList;
     }
 
     public void deletePlayerList() {

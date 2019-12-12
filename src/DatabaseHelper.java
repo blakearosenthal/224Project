@@ -41,7 +41,7 @@ public class DatabaseHelper {
                 player.getY() + "')";
         System.out.println(sqlInsert);
 
-        if (connection != null) {
+        if (connection != null && player.getHealth() > 0) {
             try {
                 Statement statement = connection.createStatement();
                 statement.execute(sqlInsert);
