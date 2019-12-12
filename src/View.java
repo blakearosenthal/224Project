@@ -22,7 +22,7 @@ public class View extends JFrame {
         optionsPanel = new OptionsPanel();
 
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new Dimension(800, 700));
         setResizable(false);
 

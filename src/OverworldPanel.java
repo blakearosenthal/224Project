@@ -3,9 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OverworldPanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
+    protected List<Player> playerList;
     protected Player player;
     protected int width;
     protected int height;
@@ -13,6 +16,7 @@ public class OverworldPanel extends JPanel implements PresetColors {
 
     public OverworldPanel() {
         player = new Player();
+        playerList = new ArrayList<>();
         setBackground(gray);
         timer = new Timer(DELAY, new ActionListener() {
             @Override
@@ -26,6 +30,10 @@ public class OverworldPanel extends JPanel implements PresetColors {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        for (Player aPlayer : playerList) {
+            player = aPlayer;
+        }
 
         Graphics2D g2 = (Graphics2D) g;
         Dimension panelDim = this.getSize();

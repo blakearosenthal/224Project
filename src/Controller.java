@@ -1,8 +1,5 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class Controller {
     private Model model;
@@ -11,6 +8,17 @@ public class Controller {
     public Controller(Model model) {
         this.model = model;
         this.view = new View(this);
+        view.overworldPanel.playerList = model.getPlayerList();
+
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                model.insertPlayer(view.overworldPanel.player);
+                model.closeList();
+                System.exit(0);
+            }
+        });
 
         view.overworldPanel.addKeyListener(new KeyListener() {
             @Override
