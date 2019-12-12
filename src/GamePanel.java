@@ -9,7 +9,7 @@ import java.awt.geom.RoundRectangle2D;
 public class GamePanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
     Timer timer;
-    int playerHealth = 25;
+    int playerHealth;
     int enemyHealth = 25;
 
     public GamePanel() {

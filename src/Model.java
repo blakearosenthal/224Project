@@ -50,7 +50,7 @@ public class Model {
 
     private void enemyAction() {
         int action = new Random().nextInt(3);
-        if (player.health > enemy.health) { action = 0; } // if enemy health is less than player enemy will attack
+//        if (player.health > enemy.health) { action = 0; } // if enemy health is less than player enemy will attack
         switch (action) {
             case 0:
                 // enemy attack

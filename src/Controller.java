@@ -10,6 +10,7 @@ public class Controller {
         this.view = new View(this);
         view.overworldPanel.playerList = model.getPlayerList();
         view.gamePanel.playerHealth = view.overworldPanel.player.health;
+        this.model.deletePlayerList();
 
         view.addWindowListener(new WindowAdapter() {
             @Override
