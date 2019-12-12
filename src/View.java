@@ -1,14 +1,20 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.*;
 
-public class View extends JFrame {
+public class View extends JFrame implements ItemListener {
     private Controller controller;
+    JPanel cards; //a panel that uses CardLayout
+    protected JPanel combatPanel;
     protected OverworldPanel overworldPanel;
+    final static String COMBATPANEL = "Card for Combat";
+    final static String OVERWORLDPANEL = "Card for Dungeon Crawling";
     protected JButton fightButton;
-    protected JButton buffButton;
+    protected JButton shieldButton;
     protected JButton healButton;
     protected JButton runButton;
+
 
     public View(Controller controller) {
         super("Dungeon Game");
@@ -17,18 +23,58 @@ public class View extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(800, 700));
-        setResizable(false);
         setupUI();
         pack();
         setLocationRelativeTo(null);
     }
 
+    public void toggleCombatScreen() {
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.next(cards);
+    }
+
+    public void itemStateChanged(ItemEvent evt) {
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, (String)evt.getItem());
+    }
+
     private void setupUI() {
-//        getContentPane().add(new MenuPanel(), BorderLayout.CENTER);
-        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
+        // getContentPane().add(new MenuPanel(), BorderLayout.CENTER);
+        /*
+        if(controller.isInCombat()) {
+            getContentPane().add(new GamePanel(), BorderLayout.CENTER);
+            setupBattleUI();
+        } else {
+            overworldPanel = new OverworldPanel();
+            getContentPane().add(overworldPanel, BorderLayout.CENTER);
+        }
+        */
+        addComponentToPane(getContentPane());
+    }
+    public void addComponentToPane(Container pane) {
+        //Put the JComboBox in a JPanel to get a nicer look.
+        JPanel comboBoxPane = new JPanel(); //use FlowLayout
+        String comboBoxItems[] = {  OVERWORLDPANEL, COMBATPANEL };
+        JComboBox cb = new JComboBox(comboBoxItems);
+        cb.setEditable(false);
+        cb.addItemListener(this);
+        comboBoxPane.add(cb);
+
+        //Create the "cards".
+        combatPanel = new JPanel();
+        combatPanel.setLayout(new BorderLayout());
+        combatPanel.add(new GamePanel(), BorderLayout.CENTER);
         setupBattleUI();
-//        overworldPanel = new OverworldPanel();
-//        getContentPane().add(overworldPanel, BorderLayout.CENTER);
+
+        overworldPanel = new OverworldPanel();
+
+        //Create the panel that contains the "cards".
+        cards = new JPanel(new CardLayout());
+        cards.add(overworldPanel, OVERWORLDPANEL);
+        cards.add(combatPanel, COMBATPANEL);
+
+        // pane.add(comboBoxPane, BorderLayout.PAGE_START);
+        pane.add(cards, BorderLayout.CENTER);
     }
 
     private void setupBattleUI() {
@@ -44,7 +90,7 @@ public class View extends JFrame {
         optionsPanel.add(statusPanel());
         optionsPanel.add(battleOptionsPanel());
 
-        getContentPane().add(optionsPanel, BorderLayout.SOUTH);
+        combatPanel.add(optionsPanel, BorderLayout.SOUTH);
     }
 
     private JPanel battleOptionsPanel() {
@@ -55,9 +101,9 @@ public class View extends JFrame {
         fightButton.setBackground(Color.WHITE);
         battleOptionsPanel.add(fightButton);
 
-        buffButton = new JButton("BUFF");
-        buffButton.setBackground(Color.WHITE);
-        battleOptionsPanel.add(buffButton);
+        shieldButton = new JButton("SHIELD");
+        shieldButton.setBackground(Color.WHITE);
+        battleOptionsPanel.add(shieldButton);
 
         healButton = new JButton("HEAL");
         healButton.setBackground(Color.WHITE);

@@ -10,8 +10,11 @@ public class OverworldPanel extends JPanel {
     static final Color gray = Color.decode("#393e46");
     static final Color green = Color.decode("#4ecca3");
     static final Color white = Color.decode("#eeeeee");
+    static final Color red = Color.decode("#ff0000");
     protected int playerX = 200;
     protected int playerY = 200;
+    protected int monsterX = 50;
+    protected int monsterY = 50;
     protected int width;
     protected int height;
     Timer timer;
@@ -42,5 +45,8 @@ public class OverworldPanel extends JPanel {
 
         g2.setColor(green);
         g2.fill(new Rectangle2D.Double(playerX, playerY, 50, 100));
+
+        g2.setColor(red);
+        g2.fill(new Rectangle2D.Double(monsterX, monsterY, 50, 100));
     }
 }
