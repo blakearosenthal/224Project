@@ -31,24 +31,24 @@ public class Controller {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_RIGHT:
-                        if (!(view.overworldPanel.player.x + 64 > view.overworldPanel.width)) {
+                        if (!(view.overworldPanel.player.x + 69 > view.overworldPanel.width)) {
                             view.overworldPanel.player.x += 5;
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if (!(view.overworldPanel.player.x - 14 < 0)) {
+                        if (!(view.overworldPanel.player.x - 19 < 0)) {
                             view.overworldPanel.player.x -= 5;
                         }
                         break;
                     case KeyEvent.VK_UP:
-                        if (!(view.overworldPanel.player.y - 14 < 0)) {
+                        if (!(view.overworldPanel.player.y - 19 < 0)) {
                             view.overworldPanel.player.y -= 5;
                         } else {
                             view.toggleCombat();
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if (!(view.overworldPanel.player.y + 114 > view.overworldPanel.height)) {
+                        if (!(view.overworldPanel.player.y + 64 > view.overworldPanel.height)) {
                             view.overworldPanel.player.y += 5;
                         }
                         break;
