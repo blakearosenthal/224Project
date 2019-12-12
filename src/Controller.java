@@ -34,6 +34,8 @@ public class Controller {
                     case KeyEvent.VK_UP:
                         if (!(view.overworldPanel.player.y - 14 < 0)) {
                             view.overworldPanel.player.y -= 5;
+                        } else {
+                            view.toggleCombat();
                         }
                         break;
                     case KeyEvent.VK_DOWN:

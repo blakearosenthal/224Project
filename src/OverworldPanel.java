@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 
-public class OverworldPanel extends JPanel implements presetColors {
+public class OverworldPanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
     protected Player player;
     protected int width;

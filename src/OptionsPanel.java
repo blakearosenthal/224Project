@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class OptionsPanel extends JPanel implements presetColors {
+public class OptionsPanel extends JPanel implements PresetColors {
     JButton fightButton;
     JButton buffButton;
     JButton healButton;

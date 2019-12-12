@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 
-public class GamePanel extends JPanel implements presetColors {
+public class GamePanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
     Timer timer;
     int playerHealth = 25;
