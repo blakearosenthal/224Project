@@ -29,6 +29,7 @@ public class Controller {
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
+                view.overworldPanel.enemy.randomMove(view.overworldPanel.width, view.overworldPanel.height);
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_RIGHT:
                         if (!playerCollidesWithHitBox('E')) {
