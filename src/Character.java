@@ -13,7 +13,8 @@ public class Character {
     }
 
     public void damage(int damage) {
-        int calculatedDamage = defense - damage;
+        int random = new Random().nextInt(3);
+        int calculatedDamage = defense - damage - random;
         if ((health + calculatedDamage) < 0) {
             health = 0;
         } else {
@@ -24,12 +25,13 @@ public class Character {
     public void heal() {
         if (health < BASE_HEALTH) {
             health += heal;
-            System.out.println("health after healing: " + health);
+            if (health > 25) {
+                health = 25;
+            }
         }
     }
 
     public void buff() {
-        System.out.println("buffing attack by: 1");
         attack += 1;
     }
 }

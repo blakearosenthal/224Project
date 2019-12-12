@@ -6,13 +6,13 @@ import java.awt.geom.Rectangle2D;
 
 public class OverworldPanel extends JPanel implements presetColors {
     static final int DELAY = 10;
-    protected int playerX = 200;
-    protected int playerY = 200;
+    protected Player player;
     protected int width;
     protected int height;
     Timer timer;
 
     public OverworldPanel() {
+        player = new Player();
         setBackground(gray);
         timer = new Timer(DELAY, new ActionListener() {
             @Override
@@ -37,6 +37,6 @@ public class OverworldPanel extends JPanel implements presetColors {
         g2.draw(new Rectangle2D.Double(0, 0, width, height));
 
         g2.setColor(green);
-        g2.fill(new Rectangle2D.Double(playerX, playerY, 50, 100));
+        g2.fill(new Rectangle2D.Double(player.x, player.y, 50, 100));
     }
 }

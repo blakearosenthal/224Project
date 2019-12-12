@@ -1,32 +1,45 @@
+import java.util.List;
 import java.util.Random;
 
 public class Model {
+    DatabaseHelper helper;
     Character player;
     Character enemy;
 
     public Model() {
+        helper = new DatabaseHelper();
         player = new Character(2, 2);
-        enemy = new Character(1, 1);
+        enemy = new Character(2, 2);
+    }
+
+    public void insertPlayer(Player player) {
+        helper.insertPlayer(player);
+    }
+
+    public List<Player> getPlayerList() {
+        return helper.getAllPlayersList();
+    }
+
+    public void deletePlayerList() {
+        helper.deletePlayers();
+    }
+
+    public void closeList() {
+        helper.closeConnection();
     }
 
     public void attack() {
-        System.out.println("=PLAYER=");
         enemy.damage(player.attack);
-        System.out.println("=ENEMY=");
         enemyAction();
     }
 
     public void buff() {
-        System.out.println("=PLAYER=");
         player.buff();
-        System.out.println("=ENEMY=");
         enemyAction();
     }
 
     public void heal() {
-        System.out.println("=PLAYER=");
         player.heal();
-        System.out.println("=ENEMY=");
         enemyAction();
     }
 
@@ -36,7 +49,8 @@ public class Model {
     }
 
     private void enemyAction() {
-        int action = new Random().nextInt(2);
+        int action = new Random().nextInt(3);
+        if (player.health > enemy.health) { action = 0; } // if enemy health is less than player enemy will attack
         switch (action) {
             case 0:
                 // enemy attack

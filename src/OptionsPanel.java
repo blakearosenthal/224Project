@@ -26,7 +26,7 @@ public class OptionsPanel extends JPanel implements presetColors {
         JPanel battleOptionsPanel = new JPanel();
         battleOptionsPanel.setLayout(new GridLayout(0,2));
 
-        fightButton = new JButton("FIGHT");
+        fightButton = new JButton("ATTACK");
         fightButton.setBackground(white);
         battleOptionsPanel.add(fightButton);
 

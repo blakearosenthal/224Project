@@ -22,23 +22,23 @@ public class Controller {
                 public void keyPressed(KeyEvent keyEvent) {
                     switch (keyEvent.getKeyCode()) {
                         case KeyEvent.VK_RIGHT:
-                            if (!(view.overworldPanel.playerX + 64 > view.overworldPanel.width)) {
-                                view.overworldPanel.playerX += 5;
+                            if (!(view.overworldPanel.player.x + 64 > view.overworldPanel.width)) {
+                                view.overworldPanel.player.x += 5;
                             }
                             break;
                         case KeyEvent.VK_LEFT:
-                            if (!(view.overworldPanel.playerX - 14 < 0)) {
-                                view.overworldPanel.playerX -= 5;
+                            if (!(view.overworldPanel.player.x - 14 < 0)) {
+                                view.overworldPanel.player.x -= 5;
                             }
                             break;
                         case KeyEvent.VK_UP:
-                            if (!(view.overworldPanel.playerY - 14 < 0)) {
-                                view.overworldPanel.playerY -= 5;
+                            if (!(view.overworldPanel.player.y - 14 < 0)) {
+                                view.overworldPanel.player.y -= 5;
                             }
                             break;
                         case KeyEvent.VK_DOWN:
-                            if (!(view.overworldPanel.playerY + 114 > view.overworldPanel.height)) {
-                                view.overworldPanel.playerY += 5;
+                            if (!(view.overworldPanel.player.y + 114 > view.overworldPanel.height)) {
+                                view.overworldPanel.player.y += 5;
                             }
                             break;
                     }
@@ -59,8 +59,8 @@ public class Controller {
                     int postPlayerHealth = model.player.health;
                     int postEnemyHealth = model.enemy.health;
                     view.optionsPanel.statusText.setText("Your Attack did " +
-                            (previousEnemyHealth - postEnemyHealth) + " damage! You also took " +
-                            (previousPlayerHealth - postPlayerHealth) + " damage!");
+                            (previousEnemyHealth - postEnemyHealth) + " damage point(s)! Enemy attacked for " +
+                            (previousPlayerHealth - postPlayerHealth) + " damage point(s)!");
                     updateCombat();
                 }
             });
@@ -68,8 +68,11 @@ public class Controller {
             view.optionsPanel.buffButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
+                    int previousPlayerHealth = model.player.health;
                     model.buff();
-                    view.optionsPanel.statusText.setText("Attack power increased by 1!");
+                    int postPlayerHealth = model.player.health;
+                    view.optionsPanel.statusText.setText("Attack power increased by 1! Enemy attacked for " +
+                            (previousPlayerHealth - postPlayerHealth) + " damage point(s)!");
                     updateCombat();
                 }
             });
@@ -77,8 +80,12 @@ public class Controller {
             view.optionsPanel.healButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
+                    int previousPlayerHealth = model.player.health;
                     model.heal();
-                    view.optionsPanel.statusText.setText("Healed for " +  model.player.heal + " health point(s)!");
+                    int postPlayerHealth = model.player.health;
+                    view.optionsPanel.statusText.setText("Healed for " +  model.player.heal +
+                            " health point(s)! Enemy attacked for " +
+                            (previousPlayerHealth - postPlayerHealth) + " damage point(s)!");
                     updateCombat();
                 }
             });
@@ -86,7 +93,6 @@ public class Controller {
             view.optionsPanel.runButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    System.out.println("RUN");
                     if (model.run()) {
                         view.isCombat = !view.isCombat;
                     }
