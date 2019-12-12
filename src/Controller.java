@@ -139,6 +139,7 @@ public class Controller {
     private void updateCombat() {
         view.gamePanel.playerHealth = model.player.health;
         view.gamePanel.enemyHealth = model.enemy.health;
+        view.overworldPanel.player.health = model.enemy.health;
         if (model.player.health <= 0) {
             view.optionsPanel.statusText.setText("You died!");
             toggleCombatWithDelay();
