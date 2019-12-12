@@ -124,6 +124,8 @@ public class Controller {
         if (model.isEnemyHit(   view.overworldPanel.player.getX(), view.overworldPanel.player.getY(),
                                 view.overworldPanel.enemy.getX(), view.overworldPanel.enemy.getY()))
         {
+            if(model.enemy.health < 1)
+                model.enemy.health = 25;
             view.toggleCombat();
             if(view.overworldPanel.player.getX() + 175 < view.overworldPanel.width)
                 view.overworldPanel.player.moveX(+110);
@@ -143,7 +145,6 @@ public class Controller {
             toggleCombatWithDelay();
         } else if (model.enemy.health <= 0) {
             view.optionsPanel.statusText.setText("The enemy has been defeated!");
-            model.enemy.health = 25;
             toggleCombatWithDelay();
         }
     }
@@ -160,6 +161,10 @@ public class Controller {
 
     public int getPlayerHealth() {
         return model.player.health;
+    }
+
+    public int getEnemyHealth() {
+        return model.enemy.health;
     }
 
     public Character getPlayerCharacter() {

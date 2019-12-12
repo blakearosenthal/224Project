@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements PresetColors {
         playerUI(g2);
 
         // ENEMY UI
+        enemyHealth = controller.getEnemyHealth();
         enemyUI(g2);
 
         // PLAYER AVATAR
