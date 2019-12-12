@@ -9,9 +9,8 @@ public class Controller {
         this.model = model;
         this.view = new View(this);
         view.overworldPanel.playerList = model.getPlayerList();
-        view.gamePanel.playerHealth = view.overworldPanel.player.health;
         this.model.deletePlayerList();
-
+        
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -32,25 +31,25 @@ public class Controller {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_RIGHT:
-                        if (!(view.overworldPanel.player.x + 69 > view.overworldPanel.width)) {
-                            view.overworldPanel.player.x += 5;
+                        if (!collidesWithHitBox()) {
+                            view.overworldPanel.player.moveX(5);
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if (!(view.overworldPanel.player.x - 19 < 0)) {
-                            view.overworldPanel.player.x -= 5;
+                        if (!collidesWithHitBox()) {
+                            view.overworldPanel.player.moveX(-5);;
                         }
                         break;
                     case KeyEvent.VK_UP:
-                        if (!(view.overworldPanel.player.y - 19 < 0)) {
-                            view.overworldPanel.player.y -= 5;
+                        if (!collidesWithHitBox()) {
+                            view.overworldPanel.player.moveY(-5);
                         } else {
                             view.toggleCombat();
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if (!(view.overworldPanel.player.y + 64 > view.overworldPanel.height)) {
-                            view.overworldPanel.player.y += 5;
+                        if (!collidesWithHitBox()) {
+                            view.overworldPanel.player.moveY(+5);
                         }
                         break;
                 }
@@ -114,10 +113,22 @@ public class Controller {
         });
     }
 
+    private boolean collidesWithHitBox() {
+        if (view.overworldPanel.player.getX() + 69 > view.overworldPanel.width)
+            return true;
+        if (view.overworldPanel.player.getX() - 19 < 0)
+            return true;
+        if (view.overworldPanel.player.getY() - 19 < 0)
+            return true;
+        if (view.overworldPanel.player.getY() + 64 > view.overworldPanel.height)
+            return true;
+
+        return false;
+    }
+
     private void updateCombat() {
         view.gamePanel.playerHealth = model.player.health;
         view.gamePanel.enemyHealth = model.enemy.health;
-        view.overworldPanel.player.health = model.player.health;
         if (model.player.health <= 0) {
             view.optionsPanel.statusText.setText("You died!");
             toggleCombatWithDelay();
