@@ -34,7 +34,7 @@ public class DatabaseHelper {
         }
     }
 
-    public void insertPlayer(Player player) {
+    public void insertPlayer(Character player) {
         String sqlInsert = "INSERT INTO " + TABLE_GAME + " VALUES('" +
                 player.getHealth() + "', '" +
                 player.getX() + "', '" +
@@ -65,8 +65,8 @@ public class DatabaseHelper {
         }
     }
 
-    public List<Player> getAllPlayersList() {
-        List<Player> playerList = new ArrayList<>();
+    public List<Character> getAllPlayersList() {
+        List<Character> playerList = new ArrayList<>();
         String sqlSelect = "SELECT * FROM " + TABLE_GAME;
         System.out.println(sqlSelect);
 
@@ -78,7 +78,7 @@ public class DatabaseHelper {
                     int health = resultSet.getInt(HEALTH);
                     int x = resultSet.getInt(X);
                     int y = resultSet.getInt(Y);
-                    Player player = new Player(health, x, y);
+                    Character player = new Character(2, 2, x, y, health);
                     playerList.add(player);
                 }
             } catch (SQLException e) {

@@ -9,16 +9,18 @@ import java.util.List;
 
 public class OverworldPanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
-    protected List<Player> playerList;
-    protected Player player;
-    protected Enemy enemy;
+    protected List<Character> playerList;
+    protected Character player;
+    protected Character enemy;
     protected int width;
     protected int height;
-    Timer timer;
+    private Controller controller;
+    private Timer timer;
 
-    public OverworldPanel() {
-        player = new Player();
-        enemy = new Enemy(25, 200, 200);
+    public OverworldPanel(Controller c) {
+        controller = c;
+        player = controller.getPlayerCharacter();
+        enemy = controller.getEnemyCharacter();
         playerList = new ArrayList<>();
         setBackground(gray);
         timer = new Timer(DELAY, new ActionListener() {
@@ -34,7 +36,7 @@ public class OverworldPanel extends JPanel implements PresetColors {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Player aPlayer : playerList) {
+        for (Character aPlayer : playerList) {
             player = aPlayer;
         }
 

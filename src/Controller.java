@@ -156,4 +156,16 @@ public class Controller {
         delay.setRepeats(false);
         delay.start();
     }
+
+    public int getPlayerHealth() {
+        return model.player.health;
+    }
+
+    public Character getPlayerCharacter() {
+        return model.player;
+    }
+
+    public Character getEnemyCharacter() {
+        return model.enemy;
+    }
 }

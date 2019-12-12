@@ -8,8 +8,8 @@ public class Model {
 
     public Model() {
         helper = new DatabaseHelper();
-        player = new Character(2, 2);
-        enemy = new Character(2, 2);
+        player = new Character(2, 2, 500, 500);
+        enemy = new Character(2, 2, 200, 200);
     }
 
     public boolean isEnemyHit(int playerX, int playerY, int enemyX, int enemyY) {
@@ -17,11 +17,11 @@ public class Model {
         return Math.sqrt( Math.pow((playerX - enemyX), 2) + Math.pow((playerY - enemyY), 2) ) < radius;
     }
 
-    public void insertPlayer(Player player) {
+    public void insertPlayer(Character player) {
         helper.insertPlayer(player);
     }
 
-    public List<Player> getPlayerList() {
+    public List<Character> getPlayerList() {
         return helper.getAllPlayersList();
     }
 

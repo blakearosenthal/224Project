@@ -5,14 +5,16 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Connection;
 
 public class GamePanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
     Timer timer;
     int playerHealth;
     int enemyHealth = 25;
-
-    public GamePanel() {
+    public Controller controller;
+    public GamePanel(Controller controller) {
+        this.controller = controller;
         setBackground(gray);
         timer = new Timer(DELAY, new ActionListener() {
             @Override
@@ -33,6 +35,7 @@ public class GamePanel extends JPanel implements PresetColors {
         g2.setStroke(new BasicStroke(5));
 
         // PLAYER UI
+        playerHealth = controller.getPlayerHealth();
         playerUI(g2);
 
         // ENEMY UI

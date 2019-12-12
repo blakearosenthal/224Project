@@ -17,8 +17,8 @@ public class View extends JFrame {
     public View(Controller controller) {
         super("Dungeon Game");
         this.controller = controller;
-        overworldPanel = new OverworldPanel();
-        gamePanel = new GamePanel();
+        overworldPanel = new OverworldPanel(controller);
+        gamePanel = new GamePanel(controller);
         optionsPanel = new OptionsPanel();
 
         setVisible(true);
@@ -42,8 +42,6 @@ public class View extends JFrame {
         combatPanel.setLayout(new BorderLayout());
         combatPanel.add(gamePanel, BorderLayout.CENTER);
         combatPanel.add(optionsPanel, BorderLayout.SOUTH);
-
-        overworldPanel = new OverworldPanel();
 
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
