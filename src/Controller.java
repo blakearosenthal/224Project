@@ -41,7 +41,7 @@ public class Controller {
             }
         });
 
-        view.addKeyListener(new KeyListener() {
+        view.overworldPanel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
 

@@ -30,7 +30,13 @@ public class View extends JFrame implements ItemListener {
 
     public void toggleCombatScreen() {
         CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.next(cards);
+        if(controller.isInCombat()) {
+            cl.show(cards, COMBATPANEL);
+            combatPanel.requestFocusInWindow();
+        } else {
+            cl.show(cards, OVERWORLDPANEL);
+            overworldPanel.requestFocusInWindow();
+        }
     }
 
     public void itemStateChanged(ItemEvent evt) {
@@ -50,6 +56,7 @@ public class View extends JFrame implements ItemListener {
         }
         */
         addComponentToPane(getContentPane());
+        overworldPanel.requestFocusInWindow();
     }
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
