@@ -138,12 +138,12 @@ public class Controller {
     private void updateCombat() {
         view.gamePanel.playerHealth = model.player.health;
         view.gamePanel.enemyHealth = model.enemy.health;
-        view.overworldPanel.player.health = model.enemy.health;
         if (model.player.health <= 0) {
             view.optionsPanel.statusText.setText("You died!");
             toggleCombatWithDelay();
         } else if (model.enemy.health <= 0) {
             view.optionsPanel.statusText.setText("The enemy has been defeated!");
+            model.enemy.health = 25;
             toggleCombatWithDelay();
         }
     }
