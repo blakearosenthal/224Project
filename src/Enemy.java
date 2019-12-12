@@ -1,9 +1,9 @@
 import java.awt.event.KeyEvent;
 
 public class Enemy {
-    int health;
-    int x;
-    int y;
+    private int health;
+    private int x;
+    private int y;
 
     public Enemy(int health, int x, int y) {
         this.health = health;
@@ -15,6 +15,30 @@ public class Enemy {
         health = 25;
         x = 0;
         y = 0;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     /*switch (keyEvent.getKeyCode()) {

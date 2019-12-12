@@ -12,6 +12,11 @@ public class Model {
         enemy = new Character(2, 2);
     }
 
+    public boolean isEnemyHit(int playerX, int playerY, int enemyX, int enemyY) {
+        int radius = 55;
+        return Math.sqrt( Math.pow((playerX - enemyX), 2) + Math.pow((playerY - enemyY), 2) ) < radius;
+    }
+
     public void insertPlayer(Player player) {
         helper.insertPlayer(player);
     }

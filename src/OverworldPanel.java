@@ -11,12 +11,14 @@ public class OverworldPanel extends JPanel implements PresetColors {
     static final int DELAY = 10;
     protected List<Player> playerList;
     protected Player player;
+    protected Enemy enemy;
     protected int width;
     protected int height;
     Timer timer;
 
     public OverworldPanel() {
         player = new Player();
+        enemy = new Enemy(25, 200, 200);
         playerList = new ArrayList<>();
         setBackground(gray);
         timer = new Timer(DELAY, new ActionListener() {
@@ -46,9 +48,9 @@ public class OverworldPanel extends JPanel implements PresetColors {
         g2.draw(new Rectangle2D.Double(0, 0, width, height));
 
         g2.setColor(green);
-        g2.fill(new Ellipse2D.Double(player.x, player.y, 50, 50));
+        g2.fill(new Ellipse2D.Double(player.getX(), player.getY(), 50, 50));
 
         g2.setColor(red);
-        g2.fill(new Ellipse2D.Double(200, 200, 50, 50));
+        g2.fill(new Ellipse2D.Double(enemy.getX(), enemy.getY(), 50, 50));
     }
 }

@@ -36,9 +36,9 @@ public class DatabaseHelper {
 
     public void insertPlayer(Player player) {
         String sqlInsert = "INSERT INTO " + TABLE_GAME + " VALUES('" +
-                player.health + "', '" +
-                player.x + "', '" +
-                player.y + "')";
+                player.getHealth() + "', '" +
+                player.getX() + "', '" +
+                player.getY() + "')";
         System.out.println(sqlInsert);
 
         if (connection != null) {

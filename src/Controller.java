@@ -10,7 +10,7 @@ public class Controller {
         this.view = new View(this);
         view.overworldPanel.playerList = model.getPlayerList();
         this.model.deletePlayerList();
-        
+
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -31,25 +31,23 @@ public class Controller {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_RIGHT:
-                        if (!collidesWithHitBox()) {
-                            view.overworldPanel.player.moveX(5);
+                        if (!playerCollidesWithHitBox('E')) {
+                            view.overworldPanel.player.moveX(+5);
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if (!collidesWithHitBox()) {
+                        if (!playerCollidesWithHitBox('W')) {
                             view.overworldPanel.player.moveX(-5);;
                         }
                         break;
                     case KeyEvent.VK_UP:
-                        if (!collidesWithHitBox()) {
-                            view.overworldPanel.player.moveY(-5);
-                        } else {
-                            view.toggleCombat();
+                        if (!playerCollidesWithHitBox('N')) {
+                            view.overworldPanel.player.moveY(+5);
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if (!collidesWithHitBox()) {
-                            view.overworldPanel.player.moveY(+5);
+                        if (!playerCollidesWithHitBox('S')) {
+                            view.overworldPanel.player.moveY(-5);
                         }
                         break;
                 }
@@ -113,15 +111,25 @@ public class Controller {
         });
     }
 
-    private boolean collidesWithHitBox() {
-        if (view.overworldPanel.player.getX() + 69 > view.overworldPanel.width)
+    private boolean playerCollidesWithHitBox(char direction) {
+        if (direction == 'E' && view.overworldPanel.player.getX() + 69 > view.overworldPanel.width)
             return true;
-        if (view.overworldPanel.player.getX() - 19 < 0)
+        if (direction == 'W' && view.overworldPanel.player.getX() - 18 < 0)
             return true;
-        if (view.overworldPanel.player.getY() - 19 < 0)
+        if (direction == 'N' && view.overworldPanel.player.getY() - 18 < 0)
             return true;
-        if (view.overworldPanel.player.getY() + 64 > view.overworldPanel.height)
+        if (direction == 'S' && view.overworldPanel.player.getY() + 64 > view.overworldPanel.height)
             return true;
+        if (model.isEnemyHit(   view.overworldPanel.player.getX(), view.overworldPanel.player.getY(),
+                                view.overworldPanel.enemy.getX(), view.overworldPanel.enemy.getY()))
+        {
+            view.toggleCombat();
+            if(view.overworldPanel.player.getX() + 175 < view.overworldPanel.width)
+                view.overworldPanel.player.moveX(+110);
+            else
+                view.overworldPanel.player.moveX(-110);
+            return true;
+        }
 
         return false;
     }
