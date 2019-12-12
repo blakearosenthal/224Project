@@ -9,6 +9,7 @@ public class Controller {
         this.model = model;
         this.view = new View(this);
         view.overworldPanel.playerList = model.getPlayerList();
+        view.gamePanel.playerHealth = view.overworldPanel.player.health;
 
         view.addWindowListener(new WindowAdapter() {
             @Override
@@ -115,6 +116,7 @@ public class Controller {
     private void updateCombat() {
         view.gamePanel.playerHealth = model.player.health;
         view.gamePanel.enemyHealth = model.enemy.health;
+        view.overworldPanel.player.health = model.player.health;
         if (model.player.health <= 0) {
             view.optionsPanel.statusText.setText("You died!");
             toggleCombatWithDelay();
